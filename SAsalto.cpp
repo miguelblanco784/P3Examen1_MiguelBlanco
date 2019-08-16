@@ -4,15 +4,18 @@ using namespace std;
 
 #ifndef SASALTO_CPP
 #define SASALTO_CPP
-class SAsalto: Public Soldado{
+class SAsalto: public Soldado{
 	private:
 		int velocidad;
 		int fuerza;
 	public:
-		SSoporte() {
+		SAsalto() {
 	    }
 	
-	    SSoporte(int velocidad, int fuerza) {
+	    SAsalto(string nombre, int puntosdevida, int puntosdefuerza, int velocidad, int fuerza) {
+	    	setNombre(nombre);
+	    	setPuntosdevida(puntosdevida);
+	    	setPuntosdefuerza(puntosdefuerza);
 	        this->velocidad = velocidad;
 	        this->fuerza = fuerza;
 	    }
@@ -33,5 +36,32 @@ class SAsalto: Public Soldado{
 	        this->fuerza = fuerza;
 	    }
 		
+		void print(){
+	    	cout<<"Nombre: "<<getNombre()<<"  Vida: "<<getPuntosdevida()<<"  Fuerza: "<<getPuntosdefuerza()<<"  Velocidad: "<<velocidad<<"  Fuerza: "<<fuerza<<endl;
+		}
+		
+		int atacar(string atacante){
+			if(atacante=="SAsalto"){
+				return (getPuntosdefuerza()*10);
+			}else{
+				return (getPuntosdefuerza()*(10+(getVelocidad()*2)));
+			}
+		}
+		
+		bool dano(int ataque, string atacante){
+			int vivir;
+			if(atacante=="SAsalto"){
+				vivir = (getPuntosdevida()-ataque);
+				setPuntosdevida(vivir);
+			}else{
+				vivir = (getPuntosdevida()-(ataque/fuerza));
+				setPuntosdevida(vivir);
+			}
+			if(vivir > 0){
+				return false;
+			}else{
+				return true;
+			}	
+		}
 };
 #endif

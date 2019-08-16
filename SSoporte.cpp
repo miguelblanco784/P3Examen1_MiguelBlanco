@@ -1,37 +1,66 @@
 #include "Soldado.cpp"
-
-using namespace std;
-
 #ifndef SSOPORTE_CPP
 #define SSOPORTE_CPP
-class SSoporte: Public Soldado{
+class SSoporte: public Soldado{
 	private:
-		int velocidad;
-   		int fuerza;
+		int blindaje;
+	    int camuflaje;
 	public:
-		SSoporte() {
+	    SSoporte() {
 	    }
 	
-	    SSoporte(int velocidad, int fuerza) {
-	        this->velocidad = velocidad;
-	        this->fuerza = fuerza;
+	    SSoporte(string nombre, int puntosdevida, int puntosdefuerza, int blindaje, int camuflaje) {
+	    	setNombre(nombre);
+	    	setPuntosdevida(puntosdevida);
+	    	setPuntosdefuerza(puntosdefuerza);
+	        this->blindaje = blindaje;
+	        this->camuflaje = camuflaje;
 	    }
 	
-	    int getVelocidad() {
-	        return velocidad;
+	    int getBlindaje() {
+	        return blindaje;
 	    }
 	
-	    void setVelocidad(int velocidad) {
-	        this->velocidad = velocidad;
+	    void setBlindaje(int blindaje) {
+	        this->blindaje = blindaje;
 	    }
 	
-	    int getFuerza() {
-	        return fuerza;
+	    int getCamuflaje() {
+	        return camuflaje;
 	    }
 	
-	    void setFuerza(int fuerza) {
-	        this->fuerza = fuerza;
+	    void setCamuflaje(int camuflaje) {
+	        this->camuflaje = camuflaje;
 	    }
+	    
+	    void print(){
+	    	cout<<"Nombre: "<<getNombre()<<"  Vida: "<<getPuntosdevida()<<"  Fuerza: "<<getPuntosdefuerza()<<"  Blindaje: "<<blindaje<<"  Camuflaje: "<<camuflaje<<endl;
+		}
+		
+		int atacar(string atacante){
+			if(atacante=="SAsalto"){
+				return (getPuntosdefuerza()*(15+camuflaje));
+			}else{
+				return (getPuntosdefuerza()*10);
+			}
+		}
+		
+		bool dano(int ataque, string atacante){
+			int vivir;
+			if(atacante=="SAsalto"){
+				vivir = (getPuntosdevida()-(ataque/(blindaje*2)));
+				setPuntosdevida(vivir);
+			}else{
+				vivir = (getPuntosdevida()-ataque);
+				setPuntosdevida(vivir);
+			}
+			if(vivir > 0){
+				return false;
+			}else{
+				return true;
+			}
+		}
+		
 			
 };
 #endif

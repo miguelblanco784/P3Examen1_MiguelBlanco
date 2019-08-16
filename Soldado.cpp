@@ -47,11 +47,9 @@ class Soldado{
 	        this->puntosdefuerza = puntosdefuerza;
 	    }
 	    
-	    void print() = 0;
-	    
-	    void atacar() = 0;
-	    
-	    void dano(int ataque) = 0;
+	    virtual void print() = 0;
+	    virtual int atacar(string atacante) = 0;
+	    virtual bool dano(int ataque, string atacante) = 0;
 		
 };
 #endif
