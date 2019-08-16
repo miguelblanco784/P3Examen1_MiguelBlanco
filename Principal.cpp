@@ -85,6 +85,7 @@ int main(){
 			}
 		}	
 	}
+	
 	while(true){
 		int opcion;
 		cout<<"1- Atacar\n2- Listar\n3- Salir\n";
@@ -134,7 +135,6 @@ int main(){
 						}else{
 							tipo2 = "SSoporte";
 						}
-						
 						int ataque = equipo2.at(opcion2)->atacar(tipo1);
 						bool vivir = equipo1.at(opcion1)->dano(ataque, tipo2);
 						
@@ -142,7 +142,24 @@ int main(){
 							equipo1.erase(equipo1.begin()+opcion1);
 						}
 					}
-					if(equipo2.size() <= 0){
+					if(equipo1.size() <= 0){
+						ofstream Escribir;
+						Escribir.open("./ganadores.txt");
+						Escribir<<"Gano el equipo 2: "<<endl;
+						string tipoganador;
+						for(int i = 0; i < equipo2.size();i++){
+							if(typeid(equipo2.at(i))==typeid(SAsalto)){
+								tipoganador = "SAsalto";
+							}else{
+								tipoganador = "SSoporte";
+							}	
+							Escribir<<"Nombre: "<<equipo2.at(i)->getNombre()<<"  Tipo: "<<tipoganador<<"  Vida Restante: "<<equipo2.at(i)->getPuntosdevida()<<"  Puntos de ataque: "<<equipo2.at(i)->getPuntosdefuerza()<<endl;
+						}
+						Escribir.close();
+						Leer.close();
+						exit(0);
+						break;
+					} else if(equipo2.size() <= 0){
 						ofstream Escribir;
 						Escribir.open("./ganadores.txt");
 						Escribir<<"Gano el equipo 1: "<<endl;
@@ -158,24 +175,9 @@ int main(){
 						Escribir.close();
 						Leer.close();
 						exit(0);
+						break;
 					}
-					if(equipo1.size() <= 0){
-						ofstream Escribir;
-						Escribir.open("./ganadores.txt");
-						Escribir<<"Gano el equipo 1: "<<endl;
-						string tipoganador;
-						for(int i = 0; i < equipo2.size();i++){
-							if(typeid(equipo2.at(i))==typeid(SAsalto)){
-								tipoganador = "SAsalto";
-							}else{
-								tipoganador = "SSoporte";
-							}	
-							Escribir<<"Nombre: "<<equipo2.at(i)->getNombre()<<"  Tipo: "<<tipoganador<<"  Vida Restante: "<<equipo2.at(i)->getPuntosdevida()<<"  Puntos de ataque: "<<equipo2.at(i)->getPuntosdefuerza()<<endl;
-						}
-						Escribir.close();
-						Leer.close();
-						exit(0);
-					}
+					
 				}
 				
 				

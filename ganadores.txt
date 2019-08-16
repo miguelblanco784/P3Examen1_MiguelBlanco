@@ -1,3 +1,2 @@
-Gano el equipo 1: 
-Nombre: Mary Luque  Tipo: SSoporte  Vida Restante: 29  Puntos de ataque: 2
-Nombre: Carlos Varela  Tipo: SSoporte  Vida Restante: 12  Puntos de ataque: 5
+Gano el equipo 2: 
+Nombre: Mary Luque  Tipo: SSoporte  Vida Restante: 34  Puntos de ataque: 2
